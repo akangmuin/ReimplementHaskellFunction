@@ -52,8 +52,8 @@ fst' (a,b) = a
 snd' :: (a, b) -> b
 snd' (a,b) = b
 
-map' :: (a -> b) -> [a] -> [b]
-
+-- map' :: (a -> b) -> [a] -> [b]
+-- asfa
 -- mamasukan fungsi ke dalam list yang ditentukan
 -- fungsi bisa dilakukan sebagai lambda
 -- atau fungsi yang pernah dibuat sebelumnya
@@ -79,8 +79,7 @@ filter' m (x:xs)
 
 --delete :: Eq a => a -> [a] -> [a]
 -- delete akan menghasilkan list yang telah dikurangi oleh "a"
--- syarat nya "n" harus berada di dalam list, jika tidak maaka akan mengembalikan
--- list tana ada perubahan
+-- syarat nya "n" harus berada di dalam list, jika tidak maaka akan mengembalikan list tana ada perubahan
 
 --delete' :: Eq t => t -> [t] -> [t]
 delete' :: Eq t => t -> [t] -> [t]
@@ -250,7 +249,7 @@ min' (x:xs)
 
 
 --concat :: Foldable t => t [a] -> [a] 
---masukin dua list biar jadi satu -- foldable t itu list yang bisa dijelajahi, ribet jr kudu [[1],[3]]
+--masukin dua list biar jadi satu -- foldable t = list yang bisa dijelajahi, ribet jr kudu [[1],[3]]
 concat' :: [[a]] -> [a]
 concat' [] = []
 concat' (x:xs) = x ++ concat' xs
