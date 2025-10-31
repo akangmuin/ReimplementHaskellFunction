@@ -51,14 +51,21 @@ fst' (a,b) = a
 
 snd' :: (a, b) -> b
 snd' (a,b) = b
+--pembatas
 
--- map' :: (a -> b) -> [a] -> [b]
--- asfa
+map' :: (a -> b) -> [a] -> [b]
+map' f [] = []
+map' f (x:xs) = f x : map' f xs
+
+-- contoh : map' (*2) [1,2,3,4] berarti map' *2 [1:2,3,4] = *2 1 : map' *2 [2,3,4,] 
+-- lanjut lagi jadi )*2 [2:3,4,] = seterusnya sampai abis dan keluar hasil [2,4,6,8] terus diulang sampai semua terjelajahi
+-- intinya di fungsi map in iudah higher order function yang pakai fungsi lain untuk fungsi sendiri
 -- mamasukan fungsi ke dalam list yang ditentukan
 -- fungsi bisa dilakukan sebagai lambda
 -- atau fungsi yang pernah dibuat sebelumnya
 
-add' x = x + 2 -- ini buat map aja biar asique
+add' x = x + 2 
+-- ini buat map aja biar asique
 
 
 
@@ -178,13 +185,14 @@ head' (x:_) = x
 
 -- length :: [a] -> int
 length' :: [a] -> Int
-length' [] = 0
-length' (_:xs) = 1 + length' xs
+length' [] = 0 
+length'(_:xs) = 1 + length' xs
 
 -- cara mikir =
 -- length' :: [list] jadi -> Int
--- length' [] = 0 <- Basis dasar
+-- length' [] = 0 <- Basis dasar dimulai dari nol ya kak
 -- length' [1,2,3]/(1:2,3) 
+-- abaikan elemen pertama (makanya _), tapi ambil sisa list (xs)
 -- = 1 + length' [2,3]
 -- = 1 + (1 + length' [3])
 -- = 1 + (1 + (1 + length' []))
@@ -200,7 +208,7 @@ reverse' (x:xs) = reverse' xs ++ [x]
 -- reverse' ([2:3]) = reverse' [3] ++ [2,1]= [3,2,1]
 -- reverse' ([3]) = reverse' [] ++ [3,2,1] = [3,2,1]
 -- inti nya melakukan recursion kepada xs (tail) sampai habis dan ditambahkan ke (head) x
--- maka hasil akan terlihat list yang terbalik
+-- maka hasil mirip seperti list yang kebalik , neat dididididididi nluar nalar cooy
 
 
 --last' :: [a] -> a
@@ -255,33 +263,43 @@ concat' [] = []
 concat' (x:xs) = x ++ concat' xs
 
 
---pembatas
+-- welcome to the soldier side
 
-intersperse' x = x
-
---pembatas
+intersperse' :: a -> [a] -> [a]
+intersperse' _ [] = []
+intersperse' _ [y] = [y]
+intersperse' x (y:ys) = y : x : intersperse' x ys
+-- there is no one here but me
 
 intercalate' x = x
 
 --pembatas
-
-and' x = x
+and' :: [Bool] -> Bool
+and' [] = True
+and' (x:xs)
+  | x  = False
+  | otherwise  = and' xs 
 
 --pembatas
 
-or' x = x
-
+or' :: [Bool] -> Bool
+or' [] = True
+or' (x:xs) = x || or' xs
 --pembatas
 
 zip3' x = x
 
 --pembatas
 
-sum' x = x
+sum' :: Num a => [a] -> a
+sum' [] = 0
+sum' (x:xs) = x + sum' xs
 
 --pembatas
 
-product' x = x
+product' :: Num a => [a] -> a
+product' [] = 1
+product' (x:xs) = x * product' xs
 
 --pembatas
 
